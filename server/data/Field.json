@@ -1,0 +1,38 @@
+[
+    {
+        "name":"Leo Sports Kebayoran",
+        "description":"Futsal Fields (PP Block) Indoors",
+        "CategoryId":"1",
+        "price": 65000,
+        "imgUrl":"https://asset.ayo.co.id/image/venue/169086760091176.image_cropper_1690867578621_medium.jpg"
+    },
+    {
+        "name":"The Saint Sports Hub",
+        "description":"Regular rental per field vinyl carpet indoors maximum 3 hours",
+        "CategoryId":"1",
+        "price": 175000,
+        "imgUrl":"https://asset.ayo.co.id/image/venue/170773235688031.image_cropper_1707732280795_medium.jpg"
+    },
+    {
+        "name":"Futsal Center 27 Meruya",
+        "description":"Meruya Futsal Field Premium Synthetic Grass Outdoors",
+        "CategoryId":"1",
+        "price": 65000,
+        "imgUrl":"https://asset.ayo.co.id/image/venue/165399734660391.image_cropper_1653997309807_medium.jpg"
+    },
+    {
+        "name":"Futsal Rooftop PTC",
+        "description":"Premium synthetic grass outdoors field, located on the Roof floor of the Pulogadung Trade Center there is a large parking area",
+        "CategoryId":"1",
+        "price": 45000,
+        "imgUrl":"https://asset.ayo.co.id/image/venue/171031800940762.image_cropper_17FBE992-8E4A-4A5E-825C-BE1903F62234-1245-000000433CE3F0C9_medium.jpg"
+    },
+    {
+        "name":"SportPackers Legacy",
+        "description":"Synthetic grass indoors field",
+        "CategoryId":"1",
+        "price": 250000,
+        "imgUrl":"https://asset.ayo.co.id/image/venue/165112943913093.image_cropper_1651129389434_medium.jpg"
+    }
+    
+]
