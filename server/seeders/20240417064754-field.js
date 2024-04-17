@@ -12,14 +12,14 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    let categoriesData = require('../data/category.json').map((item) => {
+    let FieldsData = require('../data/Field.json').map((item) => {
       
       item.createdAt = new Date()
       item.updatedAt = new Date()
       
       return item
    })
-   await queryInterface.bulkInsert("Categories", categoriesData)
+   await queryInterface.bulkInsert("Fields", FieldsData)
   },
 
   async down (queryInterface, Sequelize) {
@@ -29,6 +29,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.bulkDelete('Categories');
+    await queryInterface.bulkDelete('Fields');
   }
 };
