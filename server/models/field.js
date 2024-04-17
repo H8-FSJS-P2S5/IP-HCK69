@@ -11,13 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Field.hasMany(models.Rent)
+      Field.belongsTo(models.Category)
     }
   }
   Field.init({
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     CategoryId: DataTypes.INTEGER,
-    price: DataTypes.INTEGER
+    price: DataTypes.INTEGER,
+    imgUrl: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Field',
