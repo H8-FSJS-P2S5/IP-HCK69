@@ -1,12 +1,12 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class Novel extends Model {
+  class Manhwa extends Model {
     static associate(models) {
-      Novel.hasMany(models.Review);
+      Manhwa.hasMany(models.Review);
     }
   }
-  Novel.init(
+  Manhwa.init(
     {
       mal_id: {
         type: DataTypes.INTEGER,
@@ -32,11 +32,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+      synopsis: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+      },
     },
     {
       sequelize,
-      modelName: "Novel",
+      modelName: "Manhwa",
     }
   );
-  return Novel;
+  return Manhwa;
 };

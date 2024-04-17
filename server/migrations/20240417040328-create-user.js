@@ -27,7 +27,7 @@ module.exports = {
         allowNull: false,
       },
       imageURL: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       role: {

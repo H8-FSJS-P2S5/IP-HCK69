@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Review extends Model {
     static associate(models) {
       Review.belongsTo(models.User);
-      Review.belongsTo(models.Novel);
+      Review.belongsTo(models.Manhwa);
     }
   }
   Review.init(
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-      NovelId: {
+      ManhwaId: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },

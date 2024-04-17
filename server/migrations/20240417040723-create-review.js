@@ -19,10 +19,10 @@ module.exports = {
         onDelete: "cascade",
         onUpdate: "cascade",
       },
-      NovelId: {
+      ManhwaId: {
         type: Sequelize.INTEGER,
         references: {
-          model: "Novels",
+          model: "Manhwas",
           key: "id",
         },
         allowNull: false,
@@ -34,7 +34,7 @@ module.exports = {
         allowNull: false,
       },
       description: {
-        type: Sequelize.STRING,
+        type: Sequelize.TEXT,
         allowNull: false,
       },
       score: {
