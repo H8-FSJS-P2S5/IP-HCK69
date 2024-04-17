@@ -1,9 +1,10 @@
+const ReviewController = require("../controllers/reviewController");
 const route = require("express").Router();
 
-route.get("/");
-route.post("/");
-route.get("/mine");
-route.put("/mine/:id");
+route.get("/", ReviewController.getReview);
+route.post("/", ReviewController.createReview);
+route.get("/mine", ReviewController.getMyReview);
+route.put("/mine/:id", ReviewController.updateMyReview);
 route.delete("/mine/:id");
 
 module.exports = route;
