@@ -27,7 +27,7 @@ export const { stateBulkReview, stateReview } = reviewSlice.actions;
 export function fetchReview() {
   return async (dispatch) => {
     try {
-      const { data } = await serverRequest.get("/review", {
+      const { data } = await serverRequest.get("/reviews", {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -43,7 +43,7 @@ export function fetchReview() {
 export function fetchReviewById(id) {
   return async (dispatch) => {
     try {
-      const { data } = await serverRequest.get("/review/" + id, {
+      const { data } = await serverRequest.get("/reviews/" + id, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -59,7 +59,7 @@ export function fetchReviewById(id) {
 export function createReview(body) {
   return async () => {
     try {
-      await serverRequest.post("/review", body, {
+      await serverRequest.post("/reviews", body, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -73,7 +73,7 @@ export function createReview(body) {
 export function updateReview(body, id) {
   return async () => {
     try {
-      await serverRequest.put("/review/" + id, body, {
+      await serverRequest.put("/reviews/" + id, body, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -87,7 +87,7 @@ export function updateReview(body, id) {
 export function deleteReview(id) {
   return async () => {
     try {
-      await serverRequest.delete("/review/" + id, {
+      await serverRequest.delete("/reviews/" + id, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },

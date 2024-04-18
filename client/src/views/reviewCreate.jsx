@@ -40,18 +40,76 @@ export default function Create() {
           <label className="form-control w-full max-w-xs">
             <div className="label">
               <span className="label-text">What is your name?</span>
-              <span className="label-text-alt">Top Right label</span>
             </div>
             <input
               type="text"
               placeholder="Type here"
               className="input input-bordered w-full max-w-xs"
             />
-            <div className="label">
-              <span className="label-text-alt">Bottom Left label</span>
-              <span className="label-text-alt">Bottom Right label</span>
-            </div>
           </label>
+          <label className="form-control">
+            <div className="label">
+              <span className="label-text">Your bio</span>
+            </div>
+            <textarea
+              className="textarea textarea-bordered h-24"
+              placeholder="Bio"
+            ></textarea>
+          </label>
+          <div className="rating rating-lg rating-half">
+            <input type="radio" name="rating-10" className="rating-hidden" />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-1"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-2"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-1"
+              checked
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-2"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-1"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-2"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-1"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-2"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-1"
+            />
+            <input
+              type="radio"
+              name="rating-10"
+              className="bg-green-500 mask mask-star-2 mask-half-2"
+            />
+          </div>
         </form>
       </div>
     </>

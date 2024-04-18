@@ -27,7 +27,7 @@ export const { stateBulkManhwa, stateManhwa } = manhwaSlice.actions;
 export function fetchManhwa() {
   return async (dispatch) => {
     try {
-      const { data } = await serverRequest.get("/manhwa", {
+      const { data } = await serverRequest.get("/manhwas", {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -43,7 +43,7 @@ export function fetchManhwa() {
 export function fetchManhwaById(id) {
   return async (dispatch) => {
     try {
-      const { data } = await serverRequest.get("/manhwa/" + id, {
+      const { data } = await serverRequest.get("/manhwas/" + id, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -59,7 +59,7 @@ export function fetchManhwaById(id) {
 export function createManhwa(body) {
   return async () => {
     try {
-      await serverRequest.post("/manhwa", body, {
+      await serverRequest.post("/manhwas", body, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
