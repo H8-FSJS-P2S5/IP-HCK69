@@ -49,6 +49,7 @@ class Controller {
     static async login(req, res, next) {
         try {
             const { email, password } = req.body
+            // console.log(req.body, "ini login");
             if (!email) throw { message: 'InvalidLogin', field: 'email' }
             if (!password) throw { message: 'InvalidLogin', field: 'password' }
 

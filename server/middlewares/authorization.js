@@ -10,5 +10,5 @@ const sender = (req, res, next) => {
     }
   }
   
-  module.exports = {sender};
+module.exports = {sender};
   
