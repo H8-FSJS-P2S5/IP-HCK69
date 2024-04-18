@@ -55,8 +55,10 @@ module.exports = {
       const message = err.errors.map((el) => el.message);
       return res.status(400).json({ message });
     }
-    if (err.name == "BadRequest") {
-      return res.status(400).json({ message: err.message });
+    if (err.name == "BadRequest" || err.name == "MidtransError") {
+      return res
+        .status(400)
+        .json({ message: err.message || err.ApiResponse.error_messages[0] });
     }
     if (err.name == "InvalidUser" || err.name == "JsonWebTokenError") {
       return res.status(401).json({ message: err.message });

@@ -18,15 +18,71 @@ module.exports = class ManhwaController {
 
       const { data } = await axios.request(options);
       const { pagination, data: list } = data;
+
+      const manhwaList = list.map((el) => {
+        return {
+          mal_id: el.mal_id,
+          title: el.title,
+          chapter: el.chapters,
+          status: el.status,
+          imageURL: el.images.jpg.image_url,
+          url: el.url,
+          synopsis: el.synopsis,
+        };
+      });
+
       req.status(200).json(list);
     } catch (error) {
       next(error);
     }
   }
 
-  static async createManhwa(req, res, next) {
+  static async getManhwaById(req, res, next) {
+    const { id } = req.params;
     try {
-      const manhwa = await Manhwa.create(req.body);
+      const options = {
+        method: "GET",
+        url: "https://api.jikan.moe/v4/manga/" + id,
+      };
+      const { data } = await axios.request(options);
+
+      const manhwa = {
+        mal_id: data.mal_id,
+        title: data.title,
+        chapter: data.chapters,
+        status: data.status,
+        imageURL: data.images.jpg.image_url,
+        url: data.url,
+        synopsis: data.synopsis,
+      };
+
+      req.status(200).json(manhwa);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async createManhwa(req, res, next) {
+    const { id } = req.params;
+    try {
+      const options = {
+        method: "GET",
+        url: "https://api.jikan.moe/v4/manga/" + id,
+      };
+      const { data } = await axios.request(options);
+
+      const [manhwa, created] = await Manhwa.findOrCreate({
+        where: { mal_id: id },
+        default: {
+          mal_id: data.mal_id,
+          title: data.title,
+          chapter: data.chapters,
+          status: data.status,
+          imageURL: data.images.jpg.image_url,
+          url: data.url,
+          synopsis: data.synopsis,
+        },
+      });
       res.status(201).json(manhwa);
     } catch (error) {
       next(error);

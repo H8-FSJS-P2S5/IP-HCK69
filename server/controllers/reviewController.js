@@ -6,6 +6,8 @@ module.exports = class ReviewController {
       const { sort, page, search } = req.query;
       const paramsQuerySQL = {};
 
+      paramsQuerySQL.include = [User, Manhwa];
+
       paramsQuerySQL.where = search
         ? { title: { [Op.like]: "%" + search + "%" } }
         : {};
@@ -16,7 +18,7 @@ module.exports = class ReviewController {
         paramsQuerySQL.order = [[colName, ordering]];
       }
 
-      let limit = 12;
+      let limit = 5;
       let pageNumber = 1;
       if (page) {
         if (page.size) {
@@ -52,24 +54,20 @@ module.exports = class ReviewController {
     }
   }
 
-  static async getMyReview(req, res, next) {
+  static async getReviewById(req, res, next) {
+    const { id } = req.params;
     try {
-      const review = await Review.findAll({ where: { UserId: req.user.id } });
+      const review = await Review.findByPk(id);
       res.status(200).json(review);
     } catch (error) {
       next(error);
     }
   }
 
-  static async updateMyReview(req, res, next) {
+  static async updateReview(req, res, next) {
     const { id } = req.params;
     try {
-      const review = await Review.findOne({
-        where: {
-          UserId: req.user.id,
-          id: id,
-        },
-      });
+      const review = await Review.findByPk(id);
 
       await review.update(req.body);
 
@@ -79,15 +77,10 @@ module.exports = class ReviewController {
     }
   }
 
-  static async deleteMyReview(req, res, next) {
+  static async deleteReview(req, res, next) {
     const { id } = req.params;
     try {
-      const review = await Review.findOne({
-        where: {
-          UserId: req.user.id,
-          id: id,
-        },
-      });
+      const review = await Review.findByPk(id);
 
       await review.destroy();
 
