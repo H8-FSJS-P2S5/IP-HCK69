@@ -4,7 +4,7 @@ const Controller = require('./controllers/controller');
 const { authentication } = require('./middlewares/authentication');
 const { errHandler } = require('./middlewares/errHandler');
 const port = process.env.PORT || 3100
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 const cors = require('cors');

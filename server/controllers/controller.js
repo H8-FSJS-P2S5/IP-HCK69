@@ -22,19 +22,19 @@ class Controller {
             console.log(googleToken,"<<<<<<<<<");
             const ticket = await client.verifyIdToken({
                 idToken: googleToken.credential,
-                audience: process.env.Google,  
+                audience: "706095064565-p8fbhoc2gprsdtb2s6jern58happfcrp.apps.googleusercontent.com",  
             });
             const payload = ticket.getPayload();
             
             let user = await User.findOne({
-                email:payload.email
+                email: payload.email
             })
 
             if(!user){
                 user = await User.create({
                     email: payload.email,
                     user: payload.username,
-                    password: Date.now() + Math.random()+"-dummy-password",
+                    password: String(Math.random() * 10000),
                 })
             }
             const access_token = signToken({id:user.id})
@@ -49,7 +49,6 @@ class Controller {
     static async login(req, res, next) {
         try {
             const { email, password } = req.body
-
             if (!email) throw { message: 'InvalidLogin', field: 'email' }
             if (!password) throw { message: 'InvalidLogin', field: 'password' }
 
@@ -93,7 +92,6 @@ class Controller {
 
     static async booked(req, res, next) {
         try {
-            // console.log(req.body);
             let {title, duration, startTime, endTime} = req.body
             const UserId = req.user.id
             // const FieldId = req.params.id
@@ -108,9 +106,9 @@ class Controller {
             let snap = new midtransClient.Snap({
                 // Set to true if you want Production Environment (accept real transaction).
                 isProduction: false,
-                serverKey: process.env.mitrans_key //process.env.MIDTRANS_SERVER_KEY
+                serverKey: "SB-Mid-server-VigLDmwcJmwPKj9fZjpa02Q-"
             });
-            const bookingId="Booking_" + data.id + '_' + process.env.NODE_ENV
+            const bookingId = `Booking_${data.id}_${process.env.NODE_ENV}`
             const amount = data.duration*price
             let parameter = {
                 transaction_details: {
@@ -136,7 +134,7 @@ class Controller {
 
             console.log(midtransToken);
             // res.status(201).json(midtransToken)
-            res.status(200).json({message:'Booking Created', transactionToken, transactionTokenUrl,bookingId})
+            res.status(200).json({message: 'Booking Created', transactionToken, transactionTokenUrl, bookingId})
         } catch (error) {
             next(error)
             console.log();
@@ -145,8 +143,6 @@ class Controller {
     
     static async bookeduser(req, res, next) {
         try {
-            // console.log(req.body);
-            // let {title, FieldId, duration, startTime, endTime} = req.body
             const UserId = req.user.id
             // console.log(UserId,'<<<<<<<<<<');
 
@@ -177,7 +173,6 @@ class Controller {
 
     static async myBook(req, res, next){
         try {
-            // const userid = req.user.id
             const data = await Rent.findAll({where: {UserId:req.user.id}})
             // console.log(data,'<<<<<<<<<<<');
             res.status(200).json(data)
@@ -189,7 +184,6 @@ class Controller {
     static async payment(req, res, next) {
         try {
           const { bookingId } = req.body;
-        // console.log(bookingId);
           const booking = await Booking.findOne({ where: { bookingId } });
     
           if (!booking) {
@@ -200,7 +194,7 @@ class Controller {
             return res.status(400).json({ message: "Booking alreay paid" });
           }
     
-          const serverKey = process.env.MIDTRANS_SERVER_KEY;
+          const serverKey = "SB-Mid-server-VigLDmwcJmwPKj9fZjpa02Q-";
           const base64server = Buffer.from(serverKey + ":").toString("base64");
           const response = await axios.get(
             `https://api.sandbox.midtrans.com/v2/${bookingId}/status`,
