@@ -118,8 +118,7 @@ module.exports = class UserController {
         headers: {
           accept: "application/json",
           "content-type": "application/json",
-          authorization:
-            "Basic U0ItTWlkLXNlcnZlci1ITHVZX3pOVE1sVGt6RF9SczZMUjN1SEk6",
+          authorization: "Basic " + process.env.MIDTRANS_SERVER_KEY,
         },
         data: {
           transaction_details: {

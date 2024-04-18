@@ -26,15 +26,6 @@ module.exports = {
     }
   },
 
-  guardAdminOnly: (req, res, next) => {
-    try {
-      if (req.user.role != "Admin") throw { name: `ForbiddenAccess` };
-      next();
-    } catch (error) {
-      next(error);
-    }
-  },
-
   guardAuthorOnly: async (req, res, next) => {
     try {
       const { id } = req.params;

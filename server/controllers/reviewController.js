@@ -1,4 +1,4 @@
-const { Review } = require("../models");
+const { Review, User, Manhwa } = require("../models");
 
 module.exports = class ReviewController {
   static async getReview(req, res, next) {

@@ -61,10 +61,6 @@ module.exports = (sequelize, DataTypes) => {
         defaultValue:
           "https://i.pinimg.com/474x/94/cb/68/94cb68baea50bb98cdab65b74e731c1c.jpg",
       },
-      role: {
-        type: DataTypes.STRING,
-        defaultValue: "Staff",
-      },
     },
     {
       sequelize,
