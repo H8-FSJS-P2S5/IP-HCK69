@@ -9,7 +9,6 @@ module.exports = {
         fullName: "First Admin",
         email: "iniAdmin@mail.com",
         password: hashingPassword("123456"),
-        role: "Admin",
         createdAt: new Date(),
         updatedAt: new Date(),
       },

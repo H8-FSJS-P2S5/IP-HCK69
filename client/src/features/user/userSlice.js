@@ -35,21 +35,17 @@ export function login(body) {
 export function createUser(body) {
   return async () => {
     try {
-      await serverRequest.post("/users/add-user", body, {
-        headers: {
-          Authorization: `Bearer ` + localStorage.getItem("token"),
-        },
-      });
+      await serverRequest.post("/users/add-user", body, {});
     } catch (error) {
       console.log(error);
     }
   };
 }
 
-export function fetchUserById(id) {
+export function fetchUser() {
   return async (dispatch) => {
     try {
-      const { data } = await serverRequest.get("/users/" + id, {
+      const { data } = await serverRequest.get("/users", {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -62,10 +58,10 @@ export function fetchUserById(id) {
   };
 }
 
-export function updateUser(body, id) {
+export function updateUser(body) {
   return async () => {
     try {
-      await serverRequest.put("/users/" + id, body, {
+      await serverRequest.put("/users", body, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
@@ -76,10 +72,10 @@ export function updateUser(body, id) {
   };
 }
 
-export function patchUser(body, id) {
+export function patchUser() {
   return async () => {
     try {
-      await serverRequest.patch("/users/" + id, {
+      await serverRequest.patch("/users", {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },

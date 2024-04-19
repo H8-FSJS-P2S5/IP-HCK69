@@ -16,13 +16,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Outlet />,
+    loader: () => {
+      return localStorage.getItem("token") ? redirect("/jobs") : null;
+    },
     children: [
       {
         path: "login",
         element: <UserLoginPage />,
-        loader: () => {
-          return localStorage.getItem("token") ? redirect("/jobs") : null;
-        },
+      },
+      {
+        path: "add-user",
       },
     ],
   },

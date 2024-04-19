@@ -18,11 +18,9 @@ module.exports = {
         type: Sequelize.STRING,
       },
       chapter: {
-        allowNull: false,
         type: Sequelize.INTEGER,
       },
       status: {
-        allowNull: false,
         type: Sequelize.STRING,
       },
       imageURL: {

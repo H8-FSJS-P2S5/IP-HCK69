@@ -24,11 +24,9 @@ module.exports = {
       },
       isRich: {
         type: Sequelize.BOOLEAN,
-        allowNull: false,
       },
       imageURL: {
         type: Sequelize.TEXT,
-        allowNull: false,
       },
       createdAt: {
         allowNull: false,

@@ -3,16 +3,18 @@ const axios = require("axios");
 
 module.exports = class ManhwaController {
   static async getManhwa(req, res, next) {
+    const { page, search } = req.query;
     try {
       const options = {
         method: "GET",
         url: "https://api.jikan.moe/v4/manga",
         params: {
-          page: 1,
+          page: page || 1,
           limit: 10,
           type: "manhwa",
           order_by: "popularity",
           sort: "desc",
+          letter: search || "",
         },
       };
 

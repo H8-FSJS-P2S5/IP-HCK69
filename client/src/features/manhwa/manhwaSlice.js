@@ -56,10 +56,10 @@ export function fetchManhwaById(id) {
   };
 }
 
-export function createManhwa(body) {
+export function createManhwa(body, id) {
   return async () => {
     try {
-      await serverRequest.post("/manhwas", body, {
+      await serverRequest.post("/manhwas/" + id, body, {
         headers: {
           Authorization: `Bearer ` + localStorage.getItem("token"),
         },
