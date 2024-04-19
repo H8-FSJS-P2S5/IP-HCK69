@@ -134,7 +134,7 @@ class Controller {
             UserId
            })
 
-            console.log(midtransToken);
+            // console.log(midtransToken);
             // res.status(201).json(midtransToken)
             res.status(200).json({message: 'Booking Created', transactionToken, transactionTokenUrl, bookingId})
         } catch (error) {

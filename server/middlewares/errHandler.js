@@ -17,6 +17,10 @@ const errHandler = (err, req, res, next) => {
         case "EmailRequired":
             res.status(400).json({ message: "Email is required" })
             break;
+        
+        case "PasswordRequired":
+            res.status(400).json({ message: "Password is required" })
+            break;
 
         case "unauthorized":
             res.status(401).json({ message: `Invalid email/password` })
@@ -35,7 +39,7 @@ const errHandler = (err, req, res, next) => {
             break;
 
         case "invalidDelete":
-            res.status(400).json({ message: `Played Hero cannot be deleted` })
+            res.status(400).json({ message: `Booking cannot be deleted` })
             break;
 
 

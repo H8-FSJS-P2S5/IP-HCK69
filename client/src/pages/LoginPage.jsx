@@ -46,7 +46,7 @@ function LoginPage() {
     };
   
     const handleCredentialResponse = async (response) => {
-        console.log("Encoded JWT ID token: ", response);
+        // console.log("Encoded JWT ID token: ", response);
       try {
         // console.log("ini dari fe", response);
         const { data } = await axios({
