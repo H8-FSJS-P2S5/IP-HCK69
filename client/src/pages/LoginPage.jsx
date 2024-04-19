@@ -49,13 +49,13 @@ function LoginPage() {
         // console.log("Encoded JWT ID token: ", response);
       try {
         // console.log("ini dari fe", response);
-        const { data } = await axios[{
+        const { data } = await axios({
             method: "post",
             url: "http://localhost:3100/google-login",
             headers: {
-                googleToken: response.credential,
+                google_token: response.credential, 
             },
-        }]
+        })
       localStorage.access_token = data.access_token;
       navigate("/");
       Swal.fire({

@@ -39,14 +39,14 @@ class Controller {
             console.log(error, "<< controller");
         }
     }
-    
+
     static async googleLogin(req, res, next){
         try {
             // console.log("google log");
-            const { googleToken } = req.headers
+            const { google_token } = req.headers
             // console.log(googleToken,"<<<<<<<<<");
             const ticket = await client.verifyIdToken({
-                idToken: googleToken,
+                idToken: google_token,
                 audience: "706095064565-p8fbhoc2gprsdtb2s6jern58happfcrp.apps.googleusercontent.com",  
             });
             const payload = ticket.getPayload();

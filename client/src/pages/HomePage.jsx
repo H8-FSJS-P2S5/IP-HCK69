@@ -9,9 +9,9 @@ function HomePage() {
       try {
         const {data} = await axios({
           method:'get',
-          url:"http://localhost:3100/field"
+          url: "http://localhost:3100/field"
         });
-        // console.log(data,'ini data<<<<');
+        console.log(data,'ini data<<<<');
         setData(data) 
       } catch (error) {
         console.log(error);
