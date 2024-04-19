@@ -50,12 +50,13 @@ class Controller {
                 audience: "706095064565-p8fbhoc2gprsdtb2s6jern58happfcrp.apps.googleusercontent.com",  
             });
             const payload = ticket.getPayload();
+            // console.log(payload, "<<<<<");
             
             const [ user, created ] = await User.findOrCreate({
                 where: { email: payload.email },
-                default: {
+                defaults: {
+                    username: payload.name,
                     email: payload.email,
-                    user: payload.username,
                     password: String(Math.random() * 10000),
                 }
             })

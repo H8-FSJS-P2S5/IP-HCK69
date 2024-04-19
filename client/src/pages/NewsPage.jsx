@@ -7,10 +7,9 @@ function NewsPage() {
 
     async function fecthData(){
       try {
-        const {data} = await axios({
+        const { data } = await axios({
           method:'get',
           url: "https://newsapi.org/v2/top-headlines?country=id&category=sports&apiKey=5082631cc01e43429fe942871cd3c73b",
-  
         });
         // console.log(data.sources,'ini data<<<<');
         setData(data.sources) 

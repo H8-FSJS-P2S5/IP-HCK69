@@ -46,7 +46,7 @@ function LoginPage() {
     };
   
     const handleCredentialResponse = async (response) => {
-        // console.log("Encoded JWT ID token: ", response);
+        console.log("Encoded JWT ID token: ", response);
       try {
         // console.log("ini dari fe", response);
         const { data } = await axios({
@@ -146,14 +146,14 @@ function LoginPage() {
                   <FaGoogle /> Sign in with Google
                 </button> */}
 
-                <div id="buttonDiv"></div>
+                {/* <div id="buttonDiv"></div> */}
                 
-                {/* <GoogleLogin
+                <GoogleLogin
                     onSuccess={handleCredentialResponse}
                     onError={() => {
                         console.log('Login Failed');
                     }}
-                />; */}
+                />
               </div>
             </form>
           </div>
