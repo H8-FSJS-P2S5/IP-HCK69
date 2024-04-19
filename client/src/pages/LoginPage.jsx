@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FaGoogle, FaHamburger } from "react-icons/fa";
+import { GoogleLogin } from '@react-oauth/google';
 
 function LoginPage() {
     const navigate = useNavigate();
@@ -44,11 +45,17 @@ function LoginPage() {
       }
     };
   
-    const handleCredentialResponse = async (credential) => {
+    const handleCredentialResponse = async (response) => {
         // console.log("Encoded JWT ID token: ", response);
       try {
-        const { data } = await axios.post(`http://localhost:3100/google-login`, {
-        googleToken: credential});
+        // console.log("ini dari fe", response);
+        const { data } = await axios[{
+            method: "post",
+            url: "http://localhost:3100/google-login",
+            headers: {
+                googleToken: response.credential,
+            },
+        }]
       localStorage.access_token = data.access_token;
       navigate("/");
       Swal.fire({
@@ -71,6 +78,7 @@ function LoginPage() {
         document.getElementById("buttonDiv"),
         { theme: "outline", size: "large" } // customization attributes
       );
+    //   google.accounts.id.prompt(); // also display the One Tap dialog
     }, []);
   
     return (
@@ -137,7 +145,15 @@ function LoginPage() {
                 >
                   <FaGoogle /> Sign in with Google
                 </button> */}
+
                 <div id="buttonDiv"></div>
+                
+                {/* <GoogleLogin
+                    onSuccess={handleCredentialResponse}
+                    onError={() => {
+                        console.log('Login Failed');
+                    }}
+                />; */}
               </div>
             </form>
           </div>

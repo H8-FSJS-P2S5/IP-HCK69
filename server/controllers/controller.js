@@ -16,54 +16,54 @@ class Controller {
         }
     }
 
+    static async login(req, res, next) {
+        try {
+            // console.log(req.body, "ini login");
+            const { email, password } = req.body
+            if (!email) throw { message: 'InvalidLogin', field: 'email' }
+            if (!password) throw { message: 'InvalidLogin', field: 'password' }
+            
+            const user = await User.findOne({ where: { email } })
+            if (!user) throw { message: 'unauthorized' }
+            
+            const checkPass = comparePassword(password, user.password)
+            if (!checkPass) throw { name: "unauthorized" }
+            
+            const payload = { id: user.id }
+            
+            const access_token  = signToken(payload)
+            
+            res.status(200).json({ access_token })
+        } catch (error) {
+            next(error)
+            console.log(error, "<< controller");
+        }
+    }
+    
     static async googleLogin(req, res, next){
         try {
-            const {googleToken} = req.body
-            console.log(googleToken,"<<<<<<<<<");
+            // console.log("google log");
+            const { googleToken } = req.headers
+            // console.log(googleToken,"<<<<<<<<<");
             const ticket = await client.verifyIdToken({
-                idToken: googleToken.credential,
+                idToken: googleToken,
                 audience: "706095064565-p8fbhoc2gprsdtb2s6jern58happfcrp.apps.googleusercontent.com",  
             });
             const payload = ticket.getPayload();
             
-            let user = await User.findOne({
-                email: payload.email
-            })
-
-            if(!user){
-                user = await User.create({
+            const [ user, created ] = await User.findOrCreate({
+                where: { email: payload.email },
+                default: {
                     email: payload.email,
                     user: payload.username,
                     password: String(Math.random() * 10000),
-                })
-            }
-            const access_token = signToken({id:user.id})
+                }
+            })
 
-            res.status(201).json({access_token})
+            const access_token = signToken({id: user.id, email: user.email})
 
-        } catch (error) {
-            next(error)
-        }
-    }
+            res.status(200).json({access_token})
 
-    static async login(req, res, next) {
-        try {
-            const { email, password } = req.body
-            // console.log(req.body, "ini login");
-            if (!email) throw { message: 'InvalidLogin', field: 'email' }
-            if (!password) throw { message: 'InvalidLogin', field: 'password' }
-
-            const user = await User.findOne({ where: { email } })
-            if (!user) throw { message: 'unauthorized' }
-
-            const checkPass = comparePassword(password, user.password)
-            if (!checkPass) throw { name: "unauthorized" }
-
-            const payload = { id: user.id }
-
-            const access_token  = signToken(payload)
-
-            res.status(200).json({ access_token })
         } catch (error) {
             next(error)
         }

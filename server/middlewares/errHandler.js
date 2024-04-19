@@ -40,7 +40,7 @@ const errHandler = (err, req, res, next) => {
 
 
         default:
-            console.log(err);
+            console.log(err, "<< err hand");
             res.status(500).json({ message: "Internal Server Error" })
             break;
     }

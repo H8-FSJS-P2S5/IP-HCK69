@@ -7,7 +7,7 @@ function CardNews({item}) {
             <figure>
               <img className="rounded-lg"
                 src={item.url}
-                alt="Shoes"
+                alt="Fields"
               />
             </figure>
             <div className="card-body">

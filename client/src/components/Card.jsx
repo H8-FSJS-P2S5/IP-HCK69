@@ -7,7 +7,7 @@ function Card(item) {
             <figure>
               <img className="rounded-lg"
                 src={item.imgUrl}
-                alt="Shoes"
+                alt="Fields"
               />
             </figure>
             <div className="card-body">
